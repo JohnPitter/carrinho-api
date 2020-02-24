@@ -7,9 +7,10 @@ import br.com.teste.api.entity.Carrinho;
 public interface CarrinhoService {
 	
 	Carrinho find(int id);
-    List<Carrinho> findAll();
-    Carrinho update(int idProduto, Carrinho produto);
-    Carrinho insert(Carrinho produto);
-    void delete(int idProduto);
+    //List<Carrinho> findAll(List<Carrinho> carrinhos);
+    String findAll(List<Carrinho> carrinhos);
+    Carrinho update(int idCarrinho, Carrinho carrinho);
+    Carrinho insert(Carrinho carrinho);
+    void delete(int idCarrinho);
 
 }

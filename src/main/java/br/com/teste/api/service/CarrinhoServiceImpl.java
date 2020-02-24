@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.teste.api.entity.Carrinho;
+import br.com.teste.api.entity.Produto;
 import br.com.teste.api.exceptions.DataIntegrationException;
 import br.com.teste.api.repository.CarrinhoRepository;
 import lombok.var;
@@ -32,8 +33,24 @@ public class CarrinhoServiceImpl implements CarrinhoService{
 
   //Busca todos os carrinhos da base
     @Override
-    public List<Carrinho> findAll(){
-        return carrinhoRepository.findAll();
+    public String findAll(List<Carrinho> carrinhos){
+        
+    	double valor = 0;
+    	double desconto = 0;
+    	String response = "";
+    	
+    	for(Carrinho c : carrinhos) {
+    		for(Produto p : c.getProdutos()){
+    			valor += p.getValue();
+    		};
+    	}
+    	
+    	if(valor > 1000) {
+    		desconto = (0.5 * valor);
+    		response = "Seu desconto é de: " + desconto + " e a sua compra total é: " + valor;
+    	}
+    	
+    	return response;
     }
 
     @Override

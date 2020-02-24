@@ -21,11 +21,13 @@ public class Carrinho implements Serializable {
 	
     private Double valorTotal;
 
-    @OneToMany(mappedBy="carrinho")
+    @OneToMany(mappedBy="carrinho", fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_cupom", referencedColumnName = "idCupom", nullable = false )
 	private List<Cupom> cupoms;
 
-    @OneToMany(mappedBy="carrinho")
-	private List<Produto> produtos;
+    @OneToMany(mappedBy="carrinho", fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_cupom", referencedColumnName = "idCupom", nullable = false )
+    private List<Produto> produtos;
 	
     
     public Carrinho(Double valorTotal) {
